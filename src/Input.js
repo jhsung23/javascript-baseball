@@ -29,4 +29,16 @@ class NumberInput extends Input {
     }
   }
 }
+
+class CommandInput extends Input {
+  constructor(input) {
+    super(input.trim());
+  }
+
+  validate(input) {
+    if (input !== '1' || input !== '2') {
+      throw new Error('올바른 커맨드가 아님');
+    }
+  }
+}
 module.exports = Input;
