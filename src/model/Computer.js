@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { GAME_RULE } = require('../util/constants');
 
 class Computer {
   #computerNumber;
@@ -9,8 +10,8 @@ class Computer {
 
   #generateNumber() {
     const computer = [];
-    while (computer.length < 3) {
-      const number = Random.pickNumberInRange(1, 9);
+    while (computer.length < GAME_RULE.GOAL) {
+      const number = Random.pickNumberInRange(GAME_RULE.MIN_NUMBER, GAME_RULE.MAX_NUMBER);
       if (!computer.includes(number)) {
         computer.push(number);
       }

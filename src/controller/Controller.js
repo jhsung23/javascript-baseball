@@ -1,6 +1,7 @@
 const BaseballGame = require('../model/BaseballGame');
 const Computer = require('../model/Computer');
 const Player = require('../model/Player');
+const { GAME_COMMAND, GAME_RULE } = require('../util/constants');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
@@ -21,7 +22,7 @@ class Controller {
     const { ball, strike } = this.#baseballGame.play();
     OutputView.printResult(ball, strike);
 
-    if (strike === 3) {
+    if (strike === GAME_RULE.GOAL) {
       OutputView.printSuccess();
       InputView.readCommand(this.handleGameCommand.bind(this));
     } else {
@@ -35,10 +36,9 @@ class Controller {
   }
 
   handleGameCommand({ input }) {
-    if (input === '1') {
+    if (input === GAME_COMMAND.RESTART) {
       InputView.readNumber(this.initGame.bind(this));
-    }
-    if (input === '2') {
+    } else if (input === GAME_COMMAND.QUIT) {
       InputView.closeView();
     }
   }

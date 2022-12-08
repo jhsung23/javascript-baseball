@@ -1,3 +1,5 @@
+const { GAME_RULE, GAME_COMMAND, ERROR } = require('../util/constants');
+
 class Input {
   constructor(input) {
     this.validate(input);
@@ -16,16 +18,16 @@ class NumberInput extends Input {
   }
 
   validate(input) {
-    if (input.length !== 3) {
-      throw new Error('길이 제한 오류');
+    if (input.length !== GAME_RULE.INPUT_LENGTH) {
+      throw new Error(ERROR.INVALID_LENGTH);
     }
 
-    if (input.match(/([1-9])/g)?.length !== 3) {
-      throw new Error('유효한 숫자값이 아님');
+    if (input.match(/([1-9])/g)?.length !== GAME_RULE.INPUT_LENGTH) {
+      throw new Error(ERROR.INVALID_NUMBER);
     }
 
-    if (new Set([...input]).size !== 3) {
-      throw new Error('중복된 값이 있음');
+    if (new Set([...input]).size !== GAME_RULE.INPUT_LENGTH) {
+      throw new Error(ERROR.DUPLICATED_NUMBER);
     }
   }
 }
@@ -36,8 +38,8 @@ class CommandInput extends Input {
   }
 
   validate(input) {
-    if (input !== '1' && input !== '2') {
-      throw new Error('올바른 커맨드가 아님');
+    if (input !== GAME_COMMAND.RESTART && input !== GAME_COMMAND.QUIT) {
+      throw new Error(ERROR.INVALID_COMMAND);
     }
   }
 }
