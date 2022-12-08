@@ -30,6 +30,10 @@ class BaseballGame {
       return computerNumber[index] === targetNumber ? strikeCount + 1 : strikeCount;
     }, 0);
   }
+
+  setForNextRound(playerNumber) {
+    this.#player.setPlayerNumber(playerNumber);
+  }
 }
 
 module.exports = BaseballGame;
