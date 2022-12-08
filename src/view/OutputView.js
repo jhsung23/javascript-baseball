@@ -12,6 +12,19 @@ const OutputView = {
   printError(message) {
     Console.print('ERROR: ' + message);
   },
+
+  printResult(ball, strike) {
+    const hint = [];
+
+    if (ball) {
+      hint.push(ball + '볼');
+    }
+    if (strike) {
+      hint.push(strike + '스트라이크');
+    }
+
+    Console.print(hint.length ? hint.join(' ') : '낫싱');
+  },
 };
 
 module.exports = OutputView;
